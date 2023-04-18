@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.saulblanco.cryptodata'
+    namespace 'com.saulblanco.drinkdataapp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.saulblanco.cryptodata"
+        applicationId "com.saulblanco.drinkdataapp"
         minSdk 21
         targetSdk 33
         versionCode 1
