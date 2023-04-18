@@ -1,33 +1,27 @@
 package com.saulblanco.cryptodata.ui.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.saulblanco.cryptodata.R
-import com.saulblanco.cryptodata.data.model.CryptoRepository
 import com.saulblanco.cryptodata.databinding.ActivityMainBinding
 import com.saulblanco.cryptodata.domain.GetFirstData
-import com.saulblanco.cryptodata.domain.model.CryptoData
-import com.saulblanco.cryptodata.ui.viewmodel.CryptoViewModel
+import com.saulblanco.cryptodata.ui.view.CoinDetail.Companion.EXTRA_ID
+import com.saulblanco.cryptodata.ui.viewmodel.DrinkViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 
     private lateinit var getFirstData: GetFirstData
-
     private lateinit var binding: ActivityMainBinding
-    private val cryptoViewModel: CryptoViewModel by viewModels()
+    private val drinkViewModel: DrinkViewModel by viewModels()
 
-    private lateinit var adapter: CryptoAdapter
+    private lateinit var adapter: DrinkAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +29,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initUI()
-        cryptoViewModel.onCreate()
+        drinkViewModel.onCreate()
 
+
+        drinkViewModel.listDrink.observe(this, Observer { drinkList->
+            adapter = DrinkAdapter(drinkList) { drinkId -> navigateToDetail(EXTRA_ID) }
+            binding.rvCryptoData.setHasFixedSize(true)
+            binding.rvCryptoData.layoutManager = LinearLayoutManager(binding.searchView.context)
+            binding.rvCryptoData.adapter = adapter
+
+
+
+        })
+
+        adapter = DrinkAdapter() { drinkId -> navigateToDetail(EXTRA_ID) }
+        binding.rvCryptoData.setHasFixedSize(true)
+        binding.rvCryptoData.layoutManager = LinearLayoutManager(binding.searchView.context)
+        binding.rvCryptoData.adapter = adapter
 
 
 
@@ -45,17 +54,7 @@ class MainActivity : AppCompatActivity() {
     private fun initUI() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                CoroutineScope(Dispatchers.IO).launch{
-                   val result: List<CryptoData>? = getFirstData()
 
-                    //TODO
-                    //No lee el recyclerview, no pinta nada, repasar
-                    runOnUiThread{
-                        adapter.updateList(result.orEmpty())
-
-                    }
-
-                }
                 return false
             }
 
@@ -63,13 +62,16 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-        adapter = CryptoAdapter()
-        binding.rvCryptoData.setHasFixedSize(true)
-        binding.rvCryptoData.layoutManager = LinearLayoutManager(this)
-        binding.rvCryptoData.adapter = adapter
+        adapter = DrinkAdapter { drinkId -> navigateToDetail(EXTRA_ID) }
+
 
     }
 
 
+    private fun navigateToDetail(id: String) {
+        val intent = Intent(this, CoinDetail::class.java)
+        intent.putExtra(EXTRA_ID, id)
+        startActivity(intent)
+    }
 
 }

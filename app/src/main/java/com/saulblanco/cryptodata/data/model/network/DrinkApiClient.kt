@@ -2,15 +2,16 @@ package com.saulblanco.cryptodata.data.model.network
 
 
 
-import com.saulblanco.cryptodata.data.model.CryptoListModel
+import com.saulblanco.cryptodata.data.model.DrinkGeneral
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface CryptoApiClient {
+interface DrinkApiClient {
+
 
     //Recojo los datos de las 100 primeras coins
-    @GET("/v1/cryptocurrency/map?start=1&limit=100&CMC_PRO_API_KEY=72464817-3daf-4ed8-969e-7133c88a6827")
-    suspend fun getMarketDataList(): Response<List<CryptoListModel>>
+    @GET("search.php?s=margarita")
+    suspend fun getMarketDataList(): Response<DrinkGeneral>
 
 
 //    //Recojo los datos filtrados por nombre

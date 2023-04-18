@@ -1,6 +1,6 @@
 package com.saulblanco.examplemvvm.di
 
-import com.saulblanco.cryptodata.data.model.network.CryptoApiClient
+import com.saulblanco.cryptodata.data.model.network.DrinkApiClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,15 +19,15 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://pro-api.coinmarketcap.com/")
+            .baseUrl("https://www.thecocktaildb.com/api/json/v1/1/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
     @Singleton
     @Provides
-    fun provideCryptoApiClient(retrofit:Retrofit): CryptoApiClient{
-        return retrofit.create(CryptoApiClient::class.java)
+    fun provideCryptoApiClient(retrofit:Retrofit): DrinkApiClient{
+        return retrofit.create(DrinkApiClient::class.java)
     }
 
 }
