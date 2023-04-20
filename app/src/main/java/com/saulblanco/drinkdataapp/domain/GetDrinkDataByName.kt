@@ -10,7 +10,7 @@ class GetDrinkDataByName @Inject constructor(
 ){
 
     suspend operator fun invoke(name:String):List<Drink> {
-        Log.i("SAUL","Paso3")
+
         val resul = repository.getDrinkDataByName(name)
         return resul
 

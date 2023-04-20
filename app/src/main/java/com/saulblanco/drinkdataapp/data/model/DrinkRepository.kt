@@ -14,8 +14,12 @@ class DrinkRepository @Inject constructor(
     }
 
     suspend fun getDrinkDataByName(name:String) : List<Drink>{
-        Log.i("SAUL","Paso4")
+
         return api.getCryptoDataFromApiByName(name)
+    }
+
+    suspend fun getItemDetail(id:String): List<DrinkDetail>{
+        return api.getItemDetailFromId(id)
     }
 
 }

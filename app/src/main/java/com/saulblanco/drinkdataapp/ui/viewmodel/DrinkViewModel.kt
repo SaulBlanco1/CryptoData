@@ -1,6 +1,5 @@
 package com.saulblanco.drinkdataapp.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -40,6 +39,8 @@ class DrinkViewModel @Inject constructor(
             }
         }
     }
+
+
 
 
 }

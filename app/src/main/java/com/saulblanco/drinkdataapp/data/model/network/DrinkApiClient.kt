@@ -2,6 +2,7 @@ package com.saulblanco.drinkdataapp.data.model.network
 
 
 
+import com.saulblanco.drinkdataapp.data.model.DrinkDetailItem
 import com.saulblanco.drinkdataapp.data.model.DrinkGeneral
 import retrofit2.Response
 import retrofit2.http.GET
@@ -17,6 +18,9 @@ interface DrinkApiClient {
 
     @GET("search.php?")
     suspend fun getDrinkByName(@Query("s") s:String): Response<DrinkGeneral>
+
+    @GET("lookup.php?")
+    suspend fun getDrinkById(@Query("i") i : String): Response<DrinkDetailItem>
 
 
 //    //Recojo los datos filtrados por nombre

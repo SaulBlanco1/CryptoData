@@ -14,11 +14,11 @@ class DrinkAdapter(
 ) :
     RecyclerView.Adapter<DrinkViewHolder>() {
 
-    fun updateList(drinkList: List<Drink>) {
-        this.drinkList = drinkList
-        Log.i("Saul",drinkList.toString())
-        notifyDataSetChanged()
-    }
+//    fun updateList(drinkList: List<Drink>) {
+//        this.drinkList = drinkList
+//        Log.i("Saul",drinkList.toString())
+//        notifyDataSetChanged()
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinkViewHolder {
 
