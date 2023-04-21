@@ -34,41 +34,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
 
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/cb1filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:id="@+id/spCategories"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:spinnerMode="dialog"
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Filtro 1"
-                    android:textColor="@color/black" />
+                    />
 
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/cb2filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Filtro 2"
-                    android:textColor="@color/black" />
+                <Spinner
+                    android:id="@+id/spAlcoholic"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:spinnerMode="dialog"
 
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/cb3filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Filtro 3"
-                    android:textColor="@color/black" />
+
+                <Spinner
+                    android:id="@+id/spGlassType"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:spinnerMode="dialog" />
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -93,26 +87,37 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_gravity="top">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
-                    android:text="Cocktails"
-                    />
-
-            </FrameLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCryptoData"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingHorizontal="5dp"
-                android:paddingVertical="10dp" />
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_gravity="top">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Cocktails"
+                        android:textSize="15sp" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvDrinkData"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="5dp"
+                        android:paddingVertical="10dp" />
+                </FrameLayout>
+            </LinearLayout>
         </FrameLayout>
 
     </androidx.cardview.widget.CardView>

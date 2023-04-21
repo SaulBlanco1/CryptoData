@@ -12,9 +12,10 @@ data class DrinkDetail(
     @SerializedName("strCategory") val category : String,
     @SerializedName("strAlcoholic") val alcoholic : String,
     @SerializedName("strInstructions") val instr : String,
-    @SerializedName("strIngredient1") val ing1 : String,
-    @SerializedName("strIngredient2") val ing2 : String,
-    @SerializedName("strIngredient3") val ing3 : String,
-    @SerializedName("strDrinkThumb") val imageDetail : String
+    @SerializedName("strIngredient1") val ing1 : String?,
+    @SerializedName("strIngredient2") val ing2 : String?,
+    @SerializedName("strIngredient3") val ing3 : String?,
+    @SerializedName("strDrinkThumb") val imageDetail : String,
+    @SerializedName("strGlass") val glassType:String
 
 )

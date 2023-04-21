@@ -35,6 +35,7 @@ class DrinkDetail : AppCompatActivity() {
             binding.tvingr2.text=itemDrink.ing2
             binding.tvingr3.text=itemDrink.ing3
             binding.tvInstruc.text=itemDrink.instr
+            binding.tvGlassType.text=itemDrink.glassType
         })
 
 

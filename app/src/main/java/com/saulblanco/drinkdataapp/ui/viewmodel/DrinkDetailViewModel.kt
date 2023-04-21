@@ -20,14 +20,8 @@ class DrinkDetailViewModel @Inject constructor(
     fun onCreate(Id: String) {
         viewModelScope.launch {
             val result = getDrinkDetail(Id)
-
             drinkItem.postValue(result)
-
-
         }
-
-
     }
-
 
 }
