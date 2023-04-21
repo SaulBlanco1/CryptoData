@@ -11,4 +11,3 @@ data class Drink(
     @SerializedName("strDrink") val name: String,
     @SerializedName("strDrinkThumb") val image:String
 )
-

@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.saulblanco.drinkdataapp.data.model.Drink
 import com.saulblanco.drinkdataapp.domain.GetDrinkDataByName
 import com.saulblanco.drinkdataapp.domain.GetFirstData
+import com.saulblanco.drinkdataapp.domain.model.DrinkGeneralDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class DrinkViewModel @Inject constructor(
     private val getDrinkDataByName: GetDrinkDataByName
 ) : ViewModel() {
 
-    val listDrink = MutableLiveData<List<Drink>>()
+    val listDrink = MutableLiveData<List<DrinkGeneralDomain>>()
 
 
     fun onCreate() {

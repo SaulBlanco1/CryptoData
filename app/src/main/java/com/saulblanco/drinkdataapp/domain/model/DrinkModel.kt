@@ -4,14 +4,15 @@ import com.saulblanco.drinkdataapp.data.model.Drink
 import com.saulblanco.drinkdataapp.data.model.DrinkGeneral
 
 
-data class DrinkModel(
-    val drinkList: List<Drink>,
+data class DrinkDomain(
+    val drinkListModel: List<Drink>,
 
 )
 
-data class drink(
+data class DrinkGeneralDomain(
     val id: String,
-    val name: String
+    val name: String,
+    val image:String
 )
 
-fun DrinkGeneral.toDomain()=DrinkModel(drinkList)
+fun Drink.toDomain()=DrinkGeneralDomain(id,name,image)

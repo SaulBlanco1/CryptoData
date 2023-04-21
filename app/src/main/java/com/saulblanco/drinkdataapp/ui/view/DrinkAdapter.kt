@@ -1,15 +1,14 @@
 package com.saulblanco.drinkdataapp.ui.view
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.saulblanco.drinkdataapp.R
-import com.saulblanco.drinkdataapp.data.model.Drink
+import com.saulblanco.drinkdataapp.domain.model.DrinkGeneralDomain
 
 
 class DrinkAdapter(
-    var drinkList: List<Drink> = emptyList(),
+    var drinkList: List<DrinkGeneralDomain> = emptyList(),
     private val onItemSelected: (String) -> Unit
 ) :
     RecyclerView.Adapter<DrinkViewHolder>() {
@@ -29,6 +28,7 @@ class DrinkAdapter(
 
 
     override fun onBindViewHolder(viewholder: DrinkViewHolder, position: Int) {
+        viewholder.bind(drinkList[position], onItemSelected)
         viewholder.bind(drinkList[position], onItemSelected)
     }
 

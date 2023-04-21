@@ -1,17 +1,18 @@
 package com.saulblanco.drinkdataapp.data.model.network
 
-import android.util.Log
 import com.saulblanco.drinkdataapp.data.model.Drink
 import com.saulblanco.drinkdataapp.data.model.DrinkDetail
+import com.saulblanco.drinkdataapp.data.model.DrinkGeneral
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 import javax.inject.Inject
 
 class DrinkService @Inject constructor(private val api: DrinkApiClient) {
 
     suspend fun getCryptoDataFromApi(): List<Drink> {
         return withContext(Dispatchers.IO) {
-            val response = api.getMarketDataListBegin()
+            val response: Response<DrinkGeneral> = api.getMarketDataListBegin()
 
             response.body()?.drinkList ?: emptyList()
         }
