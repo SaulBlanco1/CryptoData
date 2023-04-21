@@ -21,10 +21,12 @@ class DrinkViewModel @Inject constructor(
     private val getDrinkDataByName: GetDrinkDataByName,
     private val getDrinkListByCategory: GetDrinkListByCategory,
     private val getDrinkListByAlcoholic: GetDrinkListByAlcoholic,
-    private val getDrinkListByGlassType: GetDrinkListByGlassType
+    private val getDrinkListByGlassType: GetDrinkListByGlassType,
+    private val getRandomDrink: GetRandomDrink
 ) : ViewModel() {
 
     val listDrink = MutableLiveData<List<DrinkGeneralDomain>>()
+    private var idRandom:String =""
 
     //Cuando se crea el ViewModel se lanza la función getFirstData y rellena el rv
     //Con valores iniciales
@@ -36,6 +38,18 @@ class DrinkViewModel @Inject constructor(
             }
         }
     }
+
+    fun setRandomDrink(){
+        viewModelScope.launch {
+            idRandom=getRandomDrink()
+        }
+
+
+    }
+    fun getRandomDrinkId():String{
+        return idRandom
+    }
+
 
     fun searchDrinkListByCategory(category:String){
         viewModelScope.launch {

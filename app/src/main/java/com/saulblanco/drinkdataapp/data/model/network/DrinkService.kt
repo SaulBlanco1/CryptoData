@@ -2,6 +2,7 @@ package com.saulblanco.drinkdataapp.data.model.network
 
 import com.saulblanco.drinkdataapp.data.model.Drink
 import com.saulblanco.drinkdataapp.data.model.DrinkDetail
+import com.saulblanco.drinkdataapp.data.model.DrinkDetailItem
 import com.saulblanco.drinkdataapp.data.model.DrinkGeneral
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -57,6 +58,13 @@ class DrinkService @Inject constructor(private val api: DrinkApiClient) {
             response.body()?.drinkList?: emptyList()
         }
 
+    }
+
+    suspend fun getRandomDrink(): String{
+        return withContext(Dispatchers.IO){
+            val response= api.getRandomDrink()
+            response.body()?.drinkList?.get(0)?.id ?: ""
+        }
     }
 
 }

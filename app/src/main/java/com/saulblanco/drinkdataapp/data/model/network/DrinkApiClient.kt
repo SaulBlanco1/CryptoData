@@ -30,5 +30,8 @@ interface DrinkApiClient {
     @GET("filter.php?")
     suspend fun getDrinkListByGlassType(@Query("g") g:String):Response<DrinkGeneral>
 
+    @GET("random.php")
+    suspend fun getRandomDrink():Response<DrinkGeneral>
+
 }
 

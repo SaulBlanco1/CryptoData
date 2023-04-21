@@ -39,4 +39,9 @@ class DrinkRepository @Inject constructor(
         return response.map {it.toDomain()}
     }
 
+    suspend fun getRandomDrink():String{
+        val response= api.getRandomDrink()
+        return response
+    }
+
 }

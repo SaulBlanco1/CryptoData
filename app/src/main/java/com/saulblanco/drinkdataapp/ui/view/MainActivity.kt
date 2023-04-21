@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         initListeners()
         drinkViewModel.onCreate()
 
+        //Inicializo el primer id de la bebida Random
+        drinkViewModel.setRandomDrink()
 
         drinkViewModel.listDrink.observe(this, Observer { drinkList ->
             adapter = DrinkAdapter(drinkList) { drinkId -> navigateToDetail(drinkId) }
@@ -54,6 +56,8 @@ class MainActivity : AppCompatActivity() {
 
     //Inicializa los listeners de los Spinners
     private fun initListeners() {
+        //----Listeners Spinners----
+        //Recoge el dato del Spinner de Category
         binding.spCategories.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -67,6 +71,7 @@ class MainActivity : AppCompatActivity() {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
 
+        //Recoge el dato del Spinner de Alcoholic?
         binding.spAlcoholic.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -80,6 +85,7 @@ class MainActivity : AppCompatActivity() {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
 
+        //Recoge el dato del Spinner de GlassType
         binding.spGlassType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -93,9 +99,11 @@ class MainActivity : AppCompatActivity() {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
 
+        //----Listeners BUTTONS----
+        //BUTTONS SEE ALL
         binding.btnCategoryAll.setOnClickListener {
-            if(!categorySelected.equals("Category:") && !categorySelected.equals("") )
-            drinkViewModel.searchDrinkListByCategory(categorySelected)
+            if (!categorySelected.equals("Category:") && !categorySelected.equals(""))
+                drinkViewModel.searchDrinkListByCategory(categorySelected)
         }
 
         binding.btnAlcoholicAll.setOnClickListener {
@@ -106,6 +114,25 @@ class MainActivity : AppCompatActivity() {
         binding.btnGlassTypeAll.setOnClickListener {
             if (!glassType.equals("Glass Type:") && !glassType.equals(""))
                 drinkViewModel.searchDrinkListByGlassType(glassType)
+
+        }
+
+        //BUTTONS MENU
+        binding.btnCocktails.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+
+        }
+
+        binding.btnRandom.setOnClickListener {
+            drinkViewModel.setRandomDrink()
+            val id = drinkViewModel.getRandomDrinkId()
+            if (!id.equals("")) {
+                navigateToDetail(id)
+            }
+        }
+
+        binding.btnFavorites.setOnClickListener {
 
         }
 
@@ -123,10 +150,12 @@ class MainActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?) = false
         })
-        adapter = DrinkAdapter { drinkId -> navigateToDetail(drinkId) }
-        binding.rvDrinkData.setHasFixedSize(true)
-        binding.rvDrinkData.layoutManager = LinearLayoutManager(binding.searchView.context)
-        binding.rvDrinkData.adapter = adapter
+
+        //Inicializa el recyclerView
+//        adapter = DrinkAdapter { drinkId -> navigateToDetail(drinkId) }
+//        binding.rvDrinkData.setHasFixedSize(true)
+//        binding.rvDrinkData.layoutManager = LinearLayoutManager(binding.searchView.context)
+//        binding.rvDrinkData.adapter = adapter
 
         initSpinners()
 
