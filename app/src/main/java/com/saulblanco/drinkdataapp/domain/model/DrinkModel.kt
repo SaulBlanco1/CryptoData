@@ -13,9 +13,9 @@ data class DrinkGeneralDomain(
     val id: String,
     val name: String,
     val image:String,
-    val alcoholic:String,
-    val tipoVaso:String,
-    val category:String
+    val alcoholic:String?,
+    val tipoVaso:String?,
+    val category:String?
 )
 
 fun Drink.toDomain()=DrinkGeneralDomain(id,name,image,alcoholic,tipoVaso, category)

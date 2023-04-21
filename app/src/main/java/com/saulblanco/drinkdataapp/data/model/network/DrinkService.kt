@@ -35,6 +35,28 @@ class DrinkService @Inject constructor(private val api: DrinkApiClient) {
             response.body()?.drinkItemList ?: emptyList()
         }
     }
+    suspend fun getDrinkListByCategory(category:String):List<Drink>{
+        return withContext(Dispatchers.IO){
+            val response = api.getDrinkListByCategory(category)
+            response.body()?.drinkList?: emptyList()
+        }
 
+    }
+
+    suspend fun getDrinkListByAlcoholic(alcoholic:String):List<Drink>{
+        return withContext(Dispatchers.IO){
+            val response = api.getDrinkListByAlcoholic(alcoholic)
+            response.body()?.drinkList?: emptyList()
+        }
+
+    }
+
+    suspend fun getDrinkListByGlassType(glassType:String):List<Drink>{
+        return withContext(Dispatchers.IO){
+            val response = api.getDrinkListByGlassType(glassType)
+            response.body()?.drinkList?: emptyList()
+        }
+
+    }
 
 }

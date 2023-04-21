@@ -24,4 +24,19 @@ class DrinkRepository @Inject constructor(
         return response.map { it.toDomain() }
     }
 
+    suspend fun getDrinkListByCategory(category:String): List<DrinkGeneralDomain>{
+        val response = api.getDrinkListByCategory(category)
+        return response.map {it.toDomain()}
+    }
+
+    suspend fun getDrinkListByAlcoholic(alcoholic:String): List<DrinkGeneralDomain>{
+        val response = api.getDrinkListByAlcoholic(alcoholic)
+        return response.map {it.toDomain()}
+    }
+
+    suspend fun getDrinkListByGlassType(glassType:String): List<DrinkGeneralDomain>{
+        val response = api.getDrinkListByGlassType(glassType)
+        return response.map {it.toDomain()}
+    }
+
 }

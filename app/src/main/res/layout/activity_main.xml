@@ -36,34 +36,73 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <Spinner
-                    android:id="@+id/spCategories"
-                    android:layout_width="200dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:spinnerMode="dialog"
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnCategoryAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:text="See all" />
 
-                    />
+                    <Spinner
+                        android:id="@+id/spCategories"
+                        android:layout_width="200dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:spinnerMode="dialog"
 
-
-                <Spinner
-                    android:id="@+id/spAlcoholic"
-                    android:layout_width="200dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:spinnerMode="dialog"
-
-                    />
+                        />
 
 
-                <Spinner
-                    android:id="@+id/spGlassType"
-                    android:layout_width="200dp"
-                    android:layout_height="48dp"
-                    android:layout_gravity="center"
-                    android:spinnerMode="dialog" />
+                </LinearLayout>
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAlcoholicAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:text="See all" />
+
+                    <Spinner
+                        android:id="@+id/spAlcoholic"
+                        android:layout_width="200dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:spinnerMode="dialog"
+
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnGlassTypeAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:text="See all" />
+
+                    <Spinner
+                        android:id="@+id/spGlassType"
+                        android:layout_width="200dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:spinnerMode="dialog" />
+                </LinearLayout>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

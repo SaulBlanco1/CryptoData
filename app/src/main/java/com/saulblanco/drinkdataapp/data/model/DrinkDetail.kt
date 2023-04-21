@@ -6,7 +6,7 @@ data class DrinkDetailItem(
     @SerializedName("drinks") val drinkItemList: List<DrinkDetail>,
 
 )
-
+//Nullables porque en el filtrado solo recoge nombre e imagen de la llamada a la API
 data class DrinkDetail(
     @SerializedName("strDrink") val name : String,
     @SerializedName("strCategory") val category : String,

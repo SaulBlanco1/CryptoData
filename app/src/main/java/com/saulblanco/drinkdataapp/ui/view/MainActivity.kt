@@ -42,18 +42,13 @@ class MainActivity : AppCompatActivity() {
         drinkViewModel.onCreate()
 
 
-
-
-
-
         drinkViewModel.listDrink.observe(this, Observer { drinkList ->
-            adapter= DrinkAdapter(drinkList) { drinkId -> navigateToDetail(drinkId) }
+            adapter = DrinkAdapter(drinkList) { drinkId -> navigateToDetail(drinkId) }
             binding.rvDrinkData.setHasFixedSize(true)
             binding.rvDrinkData.layoutManager = LinearLayoutManager(binding.searchView.context)
-            binding.rvDrinkData.adapter=adapter
+            binding.rvDrinkData.adapter = adapter
 
         })
-
 
     }
 
@@ -98,7 +93,21 @@ class MainActivity : AppCompatActivity() {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
 
+        binding.btnCategoryAll.setOnClickListener {
+            if(!categorySelected.equals("Category:") && !categorySelected.equals("") )
+            drinkViewModel.searchDrinkListByCategory(categorySelected)
+        }
 
+        binding.btnAlcoholicAll.setOnClickListener {
+            if (!alcoholic.equals("Is Alcoholic?:") && !alcoholic.equals(""))
+                drinkViewModel.searchDrinkListByAlcoholic(alcoholic)
+        }
+
+        binding.btnGlassTypeAll.setOnClickListener {
+            if (!glassType.equals("Glass Type:") && !glassType.equals(""))
+                drinkViewModel.searchDrinkListByGlassType(glassType)
+
+        }
 
     }
 

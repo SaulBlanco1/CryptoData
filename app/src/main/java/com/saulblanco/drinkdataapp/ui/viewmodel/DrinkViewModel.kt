@@ -9,8 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.material.snackbar.Snackbar
-import com.saulblanco.drinkdataapp.domain.GetDrinkDataByName
-import com.saulblanco.drinkdataapp.domain.GetFirstData
+import com.saulblanco.drinkdataapp.domain.*
 import com.saulblanco.drinkdataapp.domain.model.DrinkGeneralDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,7 +18,10 @@ import javax.inject.Inject
 @HiltViewModel
 class DrinkViewModel @Inject constructor(
     private val getFirstData: GetFirstData,
-    private val getDrinkDataByName: GetDrinkDataByName
+    private val getDrinkDataByName: GetDrinkDataByName,
+    private val getDrinkListByCategory: GetDrinkListByCategory,
+    private val getDrinkListByAlcoholic: GetDrinkListByAlcoholic,
+    private val getDrinkListByGlassType: GetDrinkListByGlassType
 ) : ViewModel() {
 
     val listDrink = MutableLiveData<List<DrinkGeneralDomain>>()
@@ -27,15 +29,31 @@ class DrinkViewModel @Inject constructor(
     //Cuando se crea el ViewModel se lanza la función getFirstData y rellena el rv
     //Con valores iniciales
     fun onCreate() {
-
         viewModelScope.launch {
             val result = getFirstData()
             if (!result.isNullOrEmpty()) {
                 listDrink.postValue(result)
             }
         }
+    }
 
-
+    fun searchDrinkListByCategory(category:String){
+        viewModelScope.launch {
+            val result = getDrinkListByCategory(category)
+            listDrink.postValue(result)
+        }
+    }
+    fun searchDrinkListByAlcoholic(alcoholic:String){
+        viewModelScope.launch {
+            val result = getDrinkListByAlcoholic(alcoholic)
+            listDrink.postValue(result)
+        }
+    }
+    fun searchDrinkListByGlassType(glassType:String){
+        viewModelScope.launch {
+            val result = getDrinkListByGlassType(glassType)
+            listDrink.postValue(result)
+        }
     }
 
     fun searchByName(name: String, categorySelected: String, alcoholic: String, glassType: String) {

@@ -21,17 +21,14 @@ interface DrinkApiClient {
     @GET("lookup.php?")
     suspend fun getDrinkById(@Query("i") i : String): Response<DrinkDetailItem>
 
+    @GET("filter.php?")
+    suspend fun getDrinkListByCategory(@Query("c") c:String):Response<DrinkGeneral>
 
-//    //Recojo los datos filtrados por nombre
-//    @GET("/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=72464817-3daf-4ed8-969e-7133c88a6827&sort=name")
-//    suspend fun getMarketDataListFilterbyName(): Response<List<CryptoListModel>>
-//
-//    //Recojo los datos filtrados por simbolo
-//    @GET("/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=72464817-3daf-4ed8-969e-7133c88a6827&sort=symbol")
-//    suspend fun getMarketDataListFilterbySymbol(): Response<List<CryptoListModel>>
-//
-//    //Recojo los datos filtrados por fecha
-//    @GET("/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=72464817-3daf-4ed8-969e-7133c88a6827&sort=date_added")
-//    suspend fun getMarketDataListFilterByDate(): Response<List<CryptoListModel>>
+    @GET("filter.php?")
+    suspend fun getDrinkListByAlcoholic(@Query("a") a:String):Response<DrinkGeneral>
+
+    @GET("filter.php?")
+    suspend fun getDrinkListByGlassType(@Query("g") g:String):Response<DrinkGeneral>
+
 }
 
