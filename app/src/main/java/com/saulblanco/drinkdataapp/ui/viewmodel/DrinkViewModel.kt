@@ -18,11 +18,15 @@ class DrinkViewModel @Inject constructor(
     private val getDrinkListByAlcoholic: GetDrinkListByAlcoholic,
     private val getDrinkListByGlassType: GetDrinkListByGlassType,
     private val getRandomDrink: GetRandomDrink,
-    private val insertFavDrinkIntoFavs: InsertFavDrinkIntoFavs
+    private val insertFavDrinkIntoFavs: InsertFavDrinkIntoFavs,
+    private val deleteFavDrinkFromFavs: DeleteFavDrinkFromFavs,
+    private val getFavDrinkList: GetFavDrinkList,
+    private val getAllFavs: GetAllDrinkIds
 ) : ViewModel() {
 
     val listDrink = MutableLiveData<List<DrinkGeneralDomain>>()
-    private var idRandom:String =""
+    private var idRandom: String = ""
+    private var idsFromFavsList: List<String> = emptyList()
 
     //Cuando se crea el ViewModel se lanza la función getFirstData y rellena el rv
     //Con valores iniciales
@@ -35,38 +39,54 @@ class DrinkViewModel @Inject constructor(
         }
     }
 
-    fun insertToFav(drinkToFav:DrinkGeneralDomain){
+    fun getIdsFromFav(): List<String> {
+        viewModelScope.launch {
+            idsFromFavsList = getAllFavs()
+        }
+        return idsFromFavsList
+    }
+
+    fun insertToFav(drinkToFav: DrinkGeneralDomain) {
         viewModelScope.launch {
             insertFavDrinkIntoFavs(drinkToFav)
         }
     }
 
-
-    fun setRandomDrink(){
+    fun deleteFromFav(favDrinktoDelete:DrinkGeneralDomain){
         viewModelScope.launch {
-            idRandom=getRandomDrink()
+            deleteFavDrinkFromFavs(favDrinktoDelete)
+        }
+    }
+
+
+    fun setRandomDrink() {
+        viewModelScope.launch {
+            idRandom = getRandomDrink()
         }
 
 
     }
-    fun getRandomDrinkId():String{
+
+    fun getRandomDrinkId(): String {
         return idRandom
     }
 
 
-    fun searchDrinkListByCategory(category:String){
+    fun searchDrinkListByCategory(category: String) {
         viewModelScope.launch {
             val result = getDrinkListByCategory(category)
             listDrink.postValue(result)
         }
     }
-    fun searchDrinkListByAlcoholic(alcoholic:String){
+
+    fun searchDrinkListByAlcoholic(alcoholic: String) {
         viewModelScope.launch {
             val result = getDrinkListByAlcoholic(alcoholic)
             listDrink.postValue(result)
         }
     }
-    fun searchDrinkListByGlassType(glassType:String){
+
+    fun searchDrinkListByGlassType(glassType: String) {
         viewModelScope.launch {
             val result = getDrinkListByGlassType(glassType)
             listDrink.postValue(result)

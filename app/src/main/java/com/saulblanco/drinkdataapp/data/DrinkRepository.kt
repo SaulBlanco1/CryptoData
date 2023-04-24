@@ -27,36 +27,45 @@ class DrinkRepository @Inject constructor(
         return response.map { it.toDomain() }
     }
 
-    suspend fun getDrinkListByCategory(category:String): List<DrinkGeneralDomain>{
+    suspend fun getDrinkListByCategory(category: String): List<DrinkGeneralDomain> {
         val response = api.getDrinkListByCategory(category)
-        return response.map {it.toDomain()}
+        return response.map { it.toDomain() }
     }
 
-    suspend fun getDrinkListByAlcoholic(alcoholic:String): List<DrinkGeneralDomain>{
+    suspend fun getDrinkListByAlcoholic(alcoholic: String): List<DrinkGeneralDomain> {
         val response = api.getDrinkListByAlcoholic(alcoholic)
-        return response.map {it.toDomain()}
+        return response.map { it.toDomain() }
     }
 
-    suspend fun getDrinkListByGlassType(glassType:String): List<DrinkGeneralDomain>{
+    suspend fun getDrinkListByGlassType(glassType: String): List<DrinkGeneralDomain> {
         val response = api.getDrinkListByGlassType(glassType)
-        return response.map {it.toDomain()}
+        return response.map { it.toDomain() }
     }
 
-    suspend fun getRandomDrink():String{
-        val response= api.getRandomDrink()
+    suspend fun getRandomDrink(): String {
+        val response = api.getRandomDrink()
         return response
     }
 
-    suspend fun getFavDrinkListFromDB():List<DrinkGeneralDomain>{
-        val response= drinkDao.getAllFavDrinks()
-        return response.map{it.toDomain()}
+    suspend fun getFavDrinkListFromDB(): List<DrinkGeneralDomain> {
+        val response = drinkDao.getAllFavDrinks()
+        return response.map { it.toDomain() }
 
     }
-    suspend fun insertFavDrink(drinkFav:DrinkEntity){
+
+    suspend fun insertFavDrink(drinkFav: DrinkEntity) {
         drinkDao.insertFavDrink(drinkFav)
     }
 
-    suspend fun clearQuotes(){
+    suspend fun getAllIdsFromFavs(): List<String> {
+        return drinkDao.getAllIds()
+    }
+
+    suspend fun deleteFavDrink(drinkFav: DrinkEntity) {
+        drinkDao.deleteFavDrink(drinkFav)
+    }
+
+    suspend fun deleteAllFavs() {
         drinkDao.deleteAllFavDrinks()
     }
 

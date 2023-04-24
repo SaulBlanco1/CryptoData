@@ -25,22 +25,31 @@ class DrinkViewHolderFav(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(drinkViewModel:DrinkFavoritesViewModel,drinkInfo: DrinkGeneralDomain, onItemSelected: (String) -> Unit) {
         binding.tvDrinkName.text = drinkInfo.name
         Picasso.get().load(drinkInfo.image).into(binding.ivDrink)
+        binding.chipFav.isChecked=true
+
+        //Listener para entrar en el detalle desde la imagen
         binding.ivDrink.setOnClickListener {
             onItemSelected(drinkInfo.id)
         }
-//        binding.btnfav.setOnClickListener {
-//            val drinktoFav = DrinkGeneralDomain(
-//                drinkInfo.id,
-//                drinkInfo.name,
-//                drinkInfo.image,
-//                drinkInfo.alcoholic,
-//                drinkInfo.tipoVaso,
-//                drinkInfo.category
-//            )
-//
-//
-//        }
+
+        //Listener botón Favorito desde FavTab
+        binding.chipFav.setOnClickListener {
+            val drinktoFav = DrinkGeneralDomain(
+                drinkInfo.id,
+                drinkInfo.name,
+                drinkInfo.image,
+                drinkInfo.alcoholic,
+                drinkInfo.tipoVaso,
+                drinkInfo.category
+            )
+            if (!binding.chipFav.isChecked) {
+                drinkViewModel.deleteFav(drinktoFav)
+
+            }
+
+        }
 
     }
+
 
 }

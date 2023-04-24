@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         drinkViewModel.setRandomDrink()
 
         drinkViewModel.listDrink.observe(this, Observer { drinkList ->
-            adapter = DrinkAdapter(drinkList,drinkViewModel) { drinkId -> navigateToDetail(drinkId) }
+            adapter = DrinkAdapter(drinkList, drinkViewModel) { drinkId -> navigateToDetail(drinkId) }
             binding.rvDrinkData.setHasFixedSize(true)
             binding.rvDrinkData.layoutManager = LinearLayoutManager(binding.searchView.context)
             binding.rvDrinkData.adapter = adapter

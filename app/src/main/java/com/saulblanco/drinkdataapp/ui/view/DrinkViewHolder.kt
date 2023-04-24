@@ -20,14 +20,21 @@ class DrinkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemDrinkBinding.bind(view)
 
 
+    fun bind(
+        drinkViewModel: DrinkViewModel,
+        drinkInfo: DrinkGeneralDomain,
+        onItemSelected: (String) -> Unit
+    ) {
+        val idsFromFav = drinkViewModel.getIdsFromFav()
+        binding.chipFav.isChecked = drinkInfo.id in idsFromFav
 
-    fun bind(drinkViewModel:DrinkViewModel,drinkInfo: DrinkGeneralDomain, onItemSelected: (String) -> Unit) {
         binding.tvDrinkName.text = drinkInfo.name
         Picasso.get().load(drinkInfo.image).into(binding.ivDrink)
         binding.ivDrink.setOnClickListener {
             onItemSelected(drinkInfo.id)
         }
-        binding.btnfav.setOnClickListener {
+
+        binding.chipFav.setOnClickListener {
             val drinktoFav = DrinkGeneralDomain(
                 drinkInfo.id,
                 drinkInfo.name,
@@ -36,10 +43,16 @@ class DrinkViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 drinkInfo.tipoVaso,
                 drinkInfo.category
             )
-            drinkViewModel.insertToFav(drinktoFav)
+            if (!binding.chipFav.isChecked) {
+                drinkViewModel.deleteFromFav(drinktoFav)
+            } else {
+                drinkViewModel.insertToFav(drinktoFav)
+            }
 
         }
+
 
     }
 
 }
+

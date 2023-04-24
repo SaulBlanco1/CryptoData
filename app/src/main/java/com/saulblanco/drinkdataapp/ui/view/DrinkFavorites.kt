@@ -27,6 +27,8 @@ class DrinkFavorites : AppCompatActivity() {
         setContentView(binding.root)
         drinkFavsviewModel.onCreate()
 
+        initListeners()
+
         drinkFavsviewModel.listFavDrink.observe(this, Observer { drinkList ->
             adapterFav = DrinkAdapterFav(drinkList,drinkFavsviewModel) { drinkId -> navigateToDetail(drinkId) }
             binding.rvDrinkFavs.setHasFixedSize(true)
@@ -37,6 +39,12 @@ class DrinkFavorites : AppCompatActivity() {
 
 
 
+    }
+
+    private fun initListeners() {
+        binding.btnDeleteAllFavs.setOnClickListener {
+            drinkFavsviewModel.deleteAllFavs()
+        }
     }
 
     private fun navigateToDetail(id: String) {
