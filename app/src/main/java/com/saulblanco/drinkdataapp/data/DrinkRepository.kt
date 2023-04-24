@@ -1,13 +1,16 @@
-package com.saulblanco.drinkdataapp.data.model
+package com.saulblanco.drinkdataapp.data
 
-import com.saulblanco.drinkdataapp.data.model.network.DrinkService
+import com.saulblanco.drinkdataapp.data.database.dao.DrinkDao
+import com.saulblanco.drinkdataapp.data.database.entities.DrinkEntity
+import com.saulblanco.drinkdataapp.data.network.DrinkService
 import com.saulblanco.drinkdataapp.domain.model.DrinkDetailDomain
 import com.saulblanco.drinkdataapp.domain.model.DrinkGeneralDomain
 import com.saulblanco.drinkdataapp.domain.model.toDomain
 import javax.inject.Inject
 
 class DrinkRepository @Inject constructor(
-    private val api: DrinkService
+    private val api: DrinkService,
+    private val drinkDao: DrinkDao
 ) {
     suspend fun getAllDrinkDataFromApi(): List<DrinkGeneralDomain> {
         val response = api.getCryptoDataFromApi()
@@ -43,5 +46,19 @@ class DrinkRepository @Inject constructor(
         val response= api.getRandomDrink()
         return response
     }
+
+    suspend fun getFavDrinkListFromDB():List<DrinkGeneralDomain>{
+        val response= drinkDao.getAllFavDrinks()
+        return response.map{it.toDomain()}
+
+    }
+    suspend fun insertFavDrink(drinkFav:DrinkEntity){
+        drinkDao.insertFavDrink(drinkFav)
+    }
+
+    suspend fun clearQuotes(){
+        drinkDao.deleteAllFavDrinks()
+    }
+
 
 }

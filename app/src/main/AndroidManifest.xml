@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DrinkApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.view.DrinkFavorites"
+            android:exported="false" />
+        <activity
             android:name=".ui.view.DrinkDetail"
             android:exported="false" />
         <activity

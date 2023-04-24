@@ -1,4 +1,4 @@
-package com.saulblanco.drinkdataapp.data.model.network
+package com.saulblanco.drinkdataapp.data.network
 
 import com.saulblanco.drinkdataapp.data.model.Drink
 import com.saulblanco.drinkdataapp.data.model.DrinkDetail

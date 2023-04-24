@@ -11,6 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnfav"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="FAV"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="10dp"
+            />
 
         <ImageView
             android:id="@+id/ivDrink"

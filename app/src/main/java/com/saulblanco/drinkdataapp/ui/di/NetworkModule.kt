@@ -1,6 +1,6 @@
 package com.saulblanco.examplemvvm.di
 
-import com.saulblanco.drinkdataapp.data.model.network.DrinkApiClient
+import com.saulblanco.drinkdataapp.data.network.DrinkApiClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,7 +26,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideDrinkApiClient(retrofit:Retrofit): DrinkApiClient{
+    fun provideDrinkApiClient(retrofit:Retrofit): DrinkApiClient {
         return retrofit.create(DrinkApiClient::class.java)
     }
 

@@ -22,7 +22,6 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
 
-    //private lateinit var getFirstData: GetFirstData
     private lateinit var binding: ActivityMainBinding
     private val drinkViewModel: DrinkViewModel by viewModels()
 
@@ -39,13 +38,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initUI()
         initListeners()
+
         drinkViewModel.onCreate()
 
         //Inicializo el primer id de la bebida Random
         drinkViewModel.setRandomDrink()
 
         drinkViewModel.listDrink.observe(this, Observer { drinkList ->
-            adapter = DrinkAdapter(drinkList) { drinkId -> navigateToDetail(drinkId) }
+            adapter = DrinkAdapter(drinkList,drinkViewModel) { drinkId -> navigateToDetail(drinkId) }
             binding.rvDrinkData.setHasFixedSize(true)
             binding.rvDrinkData.layoutManager = LinearLayoutManager(binding.searchView.context)
             binding.rvDrinkData.adapter = adapter
@@ -133,7 +133,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnFavorites.setOnClickListener {
-
+            val intent = Intent(this, DrinkFavorites::class.java)
+            startActivity(intent)
         }
 
     }

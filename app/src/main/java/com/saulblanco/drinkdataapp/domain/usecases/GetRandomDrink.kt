@@ -1,7 +1,6 @@
-package com.saulblanco.drinkdataapp.domain
+package com.saulblanco.drinkdataapp.domain.usecases
 
-import com.saulblanco.drinkdataapp.data.model.DrinkRepository
-import com.saulblanco.drinkdataapp.domain.model.DrinkGeneralDomain
+import com.saulblanco.drinkdataapp.data.DrinkRepository
 import javax.inject.Inject
 
 class GetRandomDrink  @Inject constructor(

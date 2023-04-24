@@ -1,4 +1,4 @@
-package com.saulblanco.drinkdataapp.data.model.network
+package com.saulblanco.drinkdataapp.data.network
 
 
 

@@ -1,8 +1,6 @@
-package com.saulblanco.drinkdataapp.domain
+package com.saulblanco.drinkdataapp.domain.usecases
 
-import android.util.Log
-import com.saulblanco.drinkdataapp.data.model.DrinkDetail
-import com.saulblanco.drinkdataapp.data.model.DrinkRepository
+import com.saulblanco.drinkdataapp.data.DrinkRepository
 import com.saulblanco.drinkdataapp.domain.model.DrinkDetailDomain
 import javax.inject.Inject
 

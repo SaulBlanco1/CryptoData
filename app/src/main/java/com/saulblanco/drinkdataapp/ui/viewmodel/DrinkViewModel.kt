@@ -1,16 +1,11 @@
 package com.saulblanco.drinkdataapp.ui.viewmodel
 
-import android.app.AlertDialog
-import android.content.Context
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.android.material.snackbar.Snackbar
-import com.saulblanco.drinkdataapp.domain.*
 import com.saulblanco.drinkdataapp.domain.model.DrinkGeneralDomain
+import com.saulblanco.drinkdataapp.domain.usecases.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,7 +17,8 @@ class DrinkViewModel @Inject constructor(
     private val getDrinkListByCategory: GetDrinkListByCategory,
     private val getDrinkListByAlcoholic: GetDrinkListByAlcoholic,
     private val getDrinkListByGlassType: GetDrinkListByGlassType,
-    private val getRandomDrink: GetRandomDrink
+    private val getRandomDrink: GetRandomDrink,
+    private val insertFavDrinkIntoFavs: InsertFavDrinkIntoFavs
 ) : ViewModel() {
 
     val listDrink = MutableLiveData<List<DrinkGeneralDomain>>()
@@ -38,6 +34,13 @@ class DrinkViewModel @Inject constructor(
             }
         }
     }
+
+    fun insertToFav(drinkToFav:DrinkGeneralDomain){
+        viewModelScope.launch {
+            insertFavDrinkIntoFavs(drinkToFav)
+        }
+    }
+
 
     fun setRandomDrink(){
         viewModelScope.launch {

@@ -7,29 +7,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.saulblanco.drinkdataapp.R
 import com.saulblanco.drinkdataapp.domain.model.DrinkGeneralDomain
 import com.saulblanco.drinkdataapp.domain.usecases.InsertFavDrinkIntoFavs
+import com.saulblanco.drinkdataapp.ui.viewmodel.DrinkFavoritesViewModel
 import com.saulblanco.drinkdataapp.ui.viewmodel.DrinkViewModel
 
 
-class DrinkAdapter(
+class DrinkAdapterFav(
     var drinkList: List<DrinkGeneralDomain> = emptyList(),
-    private val drinkViewModel:DrinkViewModel,
+    private val drinkFavViewModel:DrinkFavoritesViewModel,
     private val onItemSelected: (String) -> Unit
 
 
 ) :
-    RecyclerView.Adapter<DrinkViewHolder>() {
+    RecyclerView.Adapter<DrinkViewHolderFav>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinkViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinkViewHolderFav {
 
-        return DrinkViewHolder(
+        return DrinkViewHolderFav(
             LayoutInflater.from(parent.context).inflate(R.layout.item_drink, parent, false)
         )
     }
 
 
-    override fun onBindViewHolder(viewholder: DrinkViewHolder, position: Int) {
 
-        viewholder.bind(drinkViewModel,drinkList[position], onItemSelected)
+    override fun onBindViewHolder(viewholder: DrinkViewHolderFav, position: Int) {
+
+        viewholder.bind(drinkFavViewModel,drinkList[position], onItemSelected)
     }
 
 
