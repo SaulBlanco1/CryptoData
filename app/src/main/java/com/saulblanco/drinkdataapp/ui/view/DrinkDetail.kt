@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import com.saulblanco.drinkdataapp.R
 import com.saulblanco.drinkdataapp.databinding.ActivityDrinkDetailBinding
 import com.saulblanco.drinkdataapp.ui.viewmodel.DrinkDetailViewModel
@@ -36,8 +37,12 @@ class DrinkDetail : AppCompatActivity() {
             binding.tvingr3.text=itemDrink.ing3
             binding.tvInstruc.text=itemDrink.instr
             binding.tvGlassType.text=itemDrink.glassType
+            binding.tvDrinkNameDetail.text=itemDrink.name
         })
 
+        drinkDetailViewModel.isLoading.observe(this, {
+            binding.loadingDetail.isVisible = it
+        })
 
     }
 

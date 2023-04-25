@@ -1,4 +1,4 @@
-package com.saulblanco.drinkdataapp.ui.view
+package com.saulblanco.drinkdataapp.ui.view.rvadapters
 
 import android.util.Log
 import android.view.View

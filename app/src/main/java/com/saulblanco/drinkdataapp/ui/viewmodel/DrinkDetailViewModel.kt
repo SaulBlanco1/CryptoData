@@ -16,11 +16,14 @@ class DrinkDetailViewModel @Inject constructor(
 ) : ViewModel() {
 
     val drinkItem = MutableLiveData<DrinkDetailDomain>()
+    val isLoading = MutableLiveData<Boolean>()
 
     fun onCreate(Id: String) {
         viewModelScope.launch {
+            isLoading.postValue(true)
             val result = getDrinkDetail(Id)
             drinkItem.postValue(result)
+            isLoading.postValue(false)
         }
     }
 

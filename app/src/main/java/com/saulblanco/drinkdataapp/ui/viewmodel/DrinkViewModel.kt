@@ -25,6 +25,8 @@ class DrinkViewModel @Inject constructor(
 ) : ViewModel() {
 
     val listDrink = MutableLiveData<List<DrinkGeneralDomain>>()
+    val isLoading = MutableLiveData<Boolean>()
+
     private var idRandom: String = ""
     private var idsFromFavsList: List<String> = emptyList()
 
@@ -32,15 +34,18 @@ class DrinkViewModel @Inject constructor(
     //Con valores iniciales
     fun onCreate() {
         viewModelScope.launch {
+            isLoading.postValue(true)
             val result = getFirstData()
             if (!result.isNullOrEmpty()) {
                 listDrink.postValue(result)
+                isLoading.postValue(false)
             }
         }
     }
 
     fun getIdsFromFav(): List<String> {
         viewModelScope.launch {
+
             idsFromFavsList = getAllFavs()
         }
         return idsFromFavsList
@@ -74,31 +79,38 @@ class DrinkViewModel @Inject constructor(
 
     fun searchDrinkListByCategory(category: String) {
         viewModelScope.launch {
+            isLoading.postValue(true)
             val result = getDrinkListByCategory(category)
             listDrink.postValue(result)
+            isLoading.postValue(false)
         }
     }
 
     fun searchDrinkListByAlcoholic(alcoholic: String) {
         viewModelScope.launch {
+            isLoading.postValue(true)
             val result = getDrinkListByAlcoholic(alcoholic)
             listDrink.postValue(result)
+            isLoading.postValue(false)
         }
     }
 
     fun searchDrinkListByGlassType(glassType: String) {
         viewModelScope.launch {
+            isLoading.postValue(true)
             val result = getDrinkListByGlassType(glassType)
             listDrink.postValue(result)
+            isLoading.postValue(false)
         }
     }
 
     fun searchByName(name: String, categorySelected: String, alcoholic: String, glassType: String) {
         viewModelScope.launch {
+            isLoading.postValue(true)
             val result = getDrinkDataByName(name)
             var drinkListFiltered = filterDrinkList(result, categorySelected, alcoholic, glassType)
             listDrink.postValue(drinkListFiltered)
-
+            isLoading.postValue(false)
         }
     }
 

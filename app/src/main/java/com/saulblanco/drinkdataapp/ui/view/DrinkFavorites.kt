@@ -6,8 +6,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.saulblanco.drinkdataapp.R
 import com.saulblanco.drinkdataapp.databinding.ActivityDrinkFavoritesBinding
+import com.saulblanco.drinkdataapp.ui.view.rvadapters.DrinkAdapterFav
 import com.saulblanco.drinkdataapp.ui.viewmodel.DrinkFavoritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

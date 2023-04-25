@@ -1,12 +1,10 @@
-package com.saulblanco.drinkdataapp.ui.view
+package com.saulblanco.drinkdataapp.ui.view.rvadapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.saulblanco.drinkdataapp.R
 import com.saulblanco.drinkdataapp.domain.model.DrinkGeneralDomain
-import com.saulblanco.drinkdataapp.domain.usecases.InsertFavDrinkIntoFavs
 import com.saulblanco.drinkdataapp.ui.viewmodel.DrinkViewModel
 
 

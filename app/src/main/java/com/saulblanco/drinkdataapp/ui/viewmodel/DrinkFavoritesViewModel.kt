@@ -19,7 +19,7 @@ class DrinkFavoritesViewModel @Inject constructor(
     private val deleteAllFavorites: DeleteAllFavs
 ): ViewModel() {
 
-    //OJOJOJO -- PUEDE QUE TENGA QUE CONVERTIR A LISTA PORQUE DEVUELVE UN SOLO DRINKGENERALDOMAIN
+
     val listFavDrink = MutableLiveData<List<DrinkGeneralDomain>>()
 
     fun onCreate(){

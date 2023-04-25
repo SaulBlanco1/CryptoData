@@ -45,6 +45,7 @@
                     android:id="@+id/tvDrinkName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:textColor="@color/white"

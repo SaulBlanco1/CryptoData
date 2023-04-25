@@ -1,22 +1,36 @@
 package com.saulblanco.drinkdataapp.ui.view
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.auth.FirebaseAuth
 import com.saulblanco.drinkdataapp.R
 import com.saulblanco.drinkdataapp.databinding.ActivityMainBinding
+import com.saulblanco.drinkdataapp.ui.view.Auth.AuthActivity
+import com.saulblanco.drinkdataapp.ui.view.rvadapters.DrinkAdapter
 import com.saulblanco.drinkdataapp.ui.viewmodel.DrinkViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
+enum class ProviderType{
+    BASIC,
+    GOOGLE
+}
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -36,6 +50,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //Setup // Recepciono el provider ya como un String
+        val bundle=intent.extras
+        val email=bundle?.getString("email")
+        val provider=bundle?.getString("provider")
+
+
+       //Guardado de datos
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+        prefs.putString("email",email)
+        prefs.putString("provider",provider)
+        prefs.apply()
+
+
         initUI()
         initListeners()
 
@@ -45,12 +73,18 @@ class MainActivity : AppCompatActivity() {
         drinkViewModel.setRandomDrink()
 
         drinkViewModel.listDrink.observe(this, Observer { drinkList ->
-            adapter = DrinkAdapter(drinkList, drinkViewModel) { drinkId -> navigateToDetail(drinkId) }
+            adapter =
+                DrinkAdapter(drinkList, drinkViewModel) { drinkId -> navigateToDetail(drinkId) }
             binding.rvDrinkData.setHasFixedSize(true)
             binding.rvDrinkData.layoutManager = LinearLayoutManager(binding.searchView.context)
             binding.rvDrinkData.adapter = adapter
 
         })
+
+        drinkViewModel.isLoading.observe(this, Observer {
+            binding.loading.isVisible = it
+        })
+
 
     }
 
@@ -121,6 +155,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnCocktails.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
 
         }
 
@@ -136,6 +171,33 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, DrinkFavorites::class.java)
             startActivity(intent)
         }
+
+        //BUTTON FAB SIGN OUT
+        binding.fabSignOut.setOnClickListener {
+            showDialog()
+        }
+
+
+    }
+
+    private fun showDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_signout)
+
+        val buttonSignOut: AppCompatButton = dialog.findViewById(R.id.btnSignOut)
+        buttonSignOut.setOnClickListener {
+            // Borrado de datos
+            val prefs=getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
+            prefs.clear()
+            prefs.apply()
+
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        dialog.show()
+
 
     }
 
