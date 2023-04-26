@@ -4,10 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.saulblanco.drinkdataapp.domain.model.DrinkGeneralDomain
-import com.saulblanco.drinkdataapp.domain.usecases.DeleteAllFavs
-import com.saulblanco.drinkdataapp.domain.usecases.DeleteFavDrinkFromFavs
-import com.saulblanco.drinkdataapp.domain.usecases.GetFavDrinkList
-import com.saulblanco.drinkdataapp.domain.usecases.InsertFavDrinkIntoFavs
+import com.saulblanco.drinkdataapp.domain.usecases.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,10 +13,11 @@ import javax.inject.Inject
 class DrinkFavoritesViewModel @Inject constructor(
     private val getFavDrinkList: GetFavDrinkList,
     private val deleteFavDrinkFromFavs: DeleteFavDrinkFromFavs,
-    private val deleteAllFavorites: DeleteAllFavs
+    private val deleteAllFavorites: DeleteAllFavs,
+    private val getRandomDrink: GetRandomDrink
 ): ViewModel() {
 
-
+    private var idRandom: String = ""
     val listFavDrink = MutableLiveData<List<DrinkGeneralDomain>>()
 
     fun onCreate(){
@@ -48,6 +46,18 @@ class DrinkFavoritesViewModel @Inject constructor(
 
 
         }
+    }
+
+    fun setRandomDrink() {
+        viewModelScope.launch {
+            idRandom = getRandomDrink()
+        }
+
+
+    }
+
+    fun getRandomDrinkId(): String {
+        return idRandom
     }
 
 

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">CoctelApp</string>
     <string name="prefs_file">com.saulblanco.drinkdataapp.PREFERENCE_FILE_KEY</string>
+    <string name="title_auth">THE BEST COCKTAIL APP</string>
 
     <string-array name="Categories">
         <item>Category:</item>

@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import com.saulblanco.drinkdataapp.databinding.ActivityAuthBinding
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -17,15 +18,18 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.saulblanco.drinkdataapp.R
 import com.saulblanco.drinkdataapp.ui.view.MainActivity
 import com.saulblanco.drinkdataapp.ui.view.ProviderType
+import com.squareup.picasso.Picasso
 
 private lateinit var binding: ActivityAuthBinding
 private val GOOGLE_SIGN_IN = 100
 
 class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        val screenSplash = installSplashScreen()
         super.onCreate(savedInstanceState)
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         //Analytics Event
         val analytics = FirebaseAnalytics.getInstance(this)
@@ -35,6 +39,12 @@ class AuthActivity : AppCompatActivity() {
 
         setup()
         session()
+
+        //SplashScreen
+        Thread.sleep(1000)
+        screenSplash.setKeepOnScreenCondition{
+            false
+        }
     }
 
     override fun onStart() {
