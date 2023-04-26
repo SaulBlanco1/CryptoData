@@ -47,6 +47,11 @@ class DrinkFavorites : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
     private fun initListeners() {
         binding.btnDeleteAllFavs.setOnClickListener {
             drinkFavsviewModel.deleteAllFavs()
@@ -71,12 +76,9 @@ class DrinkFavorites : AppCompatActivity() {
         binding.btnFavorites.setOnClickListener {
             val intent = Intent(this, DrinkFavorites::class.java)
             startActivity(intent)
+            finish()
         }
 
-        //BUTTON FAB SIGN OUT
-        binding.fabSignOut.setOnClickListener {
-            showDialog()
-        }
 
     }
 
@@ -86,24 +88,5 @@ class DrinkFavorites : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun showDialog() {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.dialog_signout)
 
-        val buttonSignOut: AppCompatButton = dialog.findViewById(R.id.btnSignOut)
-        buttonSignOut.setOnClickListener {
-            // Borrado de datos
-            val prefs=getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
-            prefs.clear()
-            prefs.apply()
-
-            FirebaseAuth.getInstance().signOut()
-            val intent = Intent(this, AuthActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-        dialog.show()
-
-
-    }
 }

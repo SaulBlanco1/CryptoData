@@ -170,6 +170,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnFavorites.setOnClickListener {
             val intent = Intent(this, DrinkFavorites::class.java)
             startActivity(intent)
+            finish()
         }
 
         //BUTTON FAB SIGN OUT
