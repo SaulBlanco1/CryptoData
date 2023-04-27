@@ -8,6 +8,7 @@ data class DrinkDetailItem(
 )
 //Nullables porque en el filtrado solo recoge nombre e imagen de la llamada a la API
 data class DrinkDetail(
+    @SerializedName("idDrink") val id:String,
     @SerializedName("strDrink") val name : String,
     @SerializedName("strCategory") val category : String,
     @SerializedName("strAlcoholic") val alcoholic : String,

@@ -1,11 +1,19 @@
 package com.saulblanco.drinkdataapp.ui.viewmodel
 
+import android.app.Dialog
+import android.content.Context
+import android.content.Intent
 import android.util.Log
+import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
+import com.saulblanco.drinkdataapp.R
 import com.saulblanco.drinkdataapp.domain.model.DrinkGeneralDomain
 import com.saulblanco.drinkdataapp.domain.usecases.*
+import com.saulblanco.drinkdataapp.ui.view.Auth.AuthActivity
+import com.saulblanco.drinkdataapp.ui.view.MainActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,6 +34,7 @@ class DrinkViewModel @Inject constructor(
 
     val listDrink = MutableLiveData<List<DrinkGeneralDomain>>()
     val isLoading = MutableLiveData<Boolean>()
+    val showDialogError = MutableLiveData<Boolean>()
 
     private var idRandom: String = ""
     private var idsFromFavsList: List<String> = emptyList()
@@ -45,7 +54,6 @@ class DrinkViewModel @Inject constructor(
 
     fun getIdsFromFav(): List<String> {
         viewModelScope.launch {
-
             idsFromFavsList = getAllFavs()
         }
         return idsFromFavsList
@@ -109,11 +117,16 @@ class DrinkViewModel @Inject constructor(
             isLoading.postValue(true)
             val result = getDrinkDataByName(name)
             var drinkListFiltered = filterDrinkList(result, categorySelected, alcoholic, glassType)
+            if(drinkListFiltered.isEmpty()){
+                showDialogError.postValue(true)
+
+            }
             listDrink.postValue(drinkListFiltered)
             isLoading.postValue(false)
         }
     }
 
+    //Filtra la búsqueda según lo indicado ( máx 1 filtro )
     fun filterDrinkList(
         drinkList: List<DrinkGeneralDomain>,
         categorySelected: String,
@@ -127,7 +140,6 @@ class DrinkViewModel @Inject constructor(
             if (categorySelected.equals("Category:") || categorySelected.equals("")) {
                 if (alcoholic.equals("Is Alcoholic?:") || alcoholic.equals("")) {
                     if (glassType.equals("Glass Type:") || glassType.equals("")) {
-                        Log.i("PRUEBAAHORA", drinkList.toString())
                         return drinkList
 
                     }
@@ -162,10 +174,11 @@ class DrinkViewModel @Inject constructor(
                 }
             }
 
-
         }
 
         return drinkListFiltered
     }
+
+
 
 }

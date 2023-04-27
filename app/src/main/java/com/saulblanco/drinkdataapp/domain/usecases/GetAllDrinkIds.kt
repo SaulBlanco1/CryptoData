@@ -1,5 +1,6 @@
 package com.saulblanco.drinkdataapp.domain.usecases
 
+import android.util.Log
 import com.saulblanco.drinkdataapp.data.DrinkRepository
 import com.saulblanco.drinkdataapp.data.database.entities.toDatabase
 import com.saulblanco.drinkdataapp.domain.model.DrinkGeneralDomain

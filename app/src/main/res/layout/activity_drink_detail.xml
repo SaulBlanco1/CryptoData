@@ -59,10 +59,19 @@
                         android:layout_weight="1"
                         android:singleLine="true"
                         android:textAlignment="center"
+
                         android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         tools:text="Cocktail" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipFav"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:checkable="true"
+                        android:layout_marginStart="5dp"
+                        app:checkedIcon="@drawable/ic_starfavselected"
+                        app:chipIcon="@drawable/checkbox_favstyle" />
                 </FrameLayout>
             </androidx.cardview.widget.CardView>
 

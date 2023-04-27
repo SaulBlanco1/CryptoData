@@ -26,7 +26,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                app:cardBackgroundColor="@color/mintgreen"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="22dp"
                 android:layout_marginTop="10dp"
                 app:cardElevation="8dp"
@@ -60,7 +60,8 @@
                             <Spinner
                                 android:id="@+id/spCategories"
                                 android:layout_width="260dp"
-                                android:layout_height="48dp"
+                                android:layout_height="40dp"
+                                android:background="@color/lightgray"
                                 android:layout_gravity="center"
                                 android:layout_marginStart="20dp"
                                 android:layout_weight="1"
@@ -71,7 +72,7 @@
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/btnCategoryAll"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
                                 android:layout_marginHorizontal="10dp"
                                 android:layout_weight="1"
                                 android:backgroundTint="@color/softpink"
@@ -85,13 +86,15 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginVertical="2dp"
                             android:orientation="horizontal">
 
                             <Spinner
                                 android:id="@+id/spAlcoholic"
                                 android:layout_width="260dp"
-                                android:layout_height="48dp"
+                                android:layout_height="40dp"
                                 android:layout_gravity="center"
+                                android:background="@color/lightgray"
                                 android:layout_marginStart="20dp"
                                 android:layout_weight="1"
                                 android:spinnerMode="dialog"
@@ -101,7 +104,7 @@
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/btnAlcoholicAll"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
                                 android:layout_marginHorizontal="10dp"
                                 android:layout_weight="1"
                                 android:backgroundTint="@color/softpink"
@@ -119,8 +122,9 @@
                             <Spinner
                                 android:id="@+id/spGlassType"
                                 android:layout_width="260dp"
-                                android:layout_height="48dp"
+                                android:layout_height="40dp"
                                 android:layout_gravity="center"
+                                android:background="@color/lightgray"
                                 android:layout_marginStart="20dp"
                                 android:layout_weight="1"
                                 android:spinnerMode="dialog" />
@@ -128,7 +132,7 @@
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/btnGlassTypeAll"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="40dp"
                                 android:layout_marginHorizontal="10dp"
                                 android:layout_weight="1"
                                 android:backgroundTint="@color/softpink"
@@ -151,7 +155,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:maxHeight="450dp"
                 android:minHeight="400dp"
-                app:cardBackgroundColor="@color/mintgreen"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="22dp"
                 app:cardElevation="8dp"
                 app:layout_constraintBottom_toTopOf="@id/cvMenu"
@@ -177,6 +181,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:text="Cocktails"
                                 android:textSize="15sp" />
 

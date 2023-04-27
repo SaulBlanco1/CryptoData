@@ -32,6 +32,9 @@ class DrinkViewHolderFav(view: View) : RecyclerView.ViewHolder(view) {
             onItemSelected(drinkInfo.id)
         }
 
+
+
+
         //Listener botón Favorito desde FavTab
         binding.chipFav.setOnClickListener {
             val drinktoFav = DrinkGeneralDomain(

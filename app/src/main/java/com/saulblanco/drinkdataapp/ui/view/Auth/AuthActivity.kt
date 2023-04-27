@@ -3,6 +3,7 @@ package com.saulblanco.drinkdataapp.ui.view.Auth
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -21,8 +22,6 @@ import com.saulblanco.drinkdataapp.ui.view.ProviderType
 import com.squareup.picasso.Picasso
 
 private lateinit var binding: ActivityAuthBinding
-private val GOOGLE_SIGN_IN = 100
-
 class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val screenSplash = installSplashScreen()
@@ -37,7 +36,10 @@ class AuthActivity : AppCompatActivity() {
         bundle.putString("message", "Integración de Firebase completa")
         analytics.logEvent("InitScreen", bundle)
 
+        //Init Listeners
         setup()
+
+        //Check si está logueado el cliente
         session()
 
         //SplashScreen
@@ -62,6 +64,7 @@ class AuthActivity : AppCompatActivity() {
         if (email != null && provider != null) {
             binding.authLayout.visibility = View.INVISIBLE
             showApp(email, provider)
+
         }
 
     }
@@ -79,6 +82,7 @@ class AuthActivity : AppCompatActivity() {
                             binding.editTextTextEmailAddress.text.toString(),
                             ProviderType.BASIC.name
                         )
+
                     } else {
                         showAlert()
                     }
@@ -119,7 +123,15 @@ class AuthActivity : AppCompatActivity() {
 
         }
 
+        binding.ivAuth.setOnClickListener {
+            val url = "https://github.com/SaulBlanco1"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+
+        }
+
     }
+
 
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)
@@ -138,6 +150,7 @@ class AuthActivity : AppCompatActivity() {
         appIntent.putExtra("email", email)
         appIntent.putExtra("provider", provider)
         startActivity(appIntent)
+        finish()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -168,3 +181,5 @@ class AuthActivity : AppCompatActivity() {
     }
 
 }
+private val GOOGLE_SIGN_IN = 100
+

@@ -28,6 +28,18 @@ class DrinkFavoritesViewModel @Inject constructor(
             }
         }
 
+
+
+    }
+
+    fun updateFav(){
+        viewModelScope.launch {
+            val result = getFavDrinkList()
+            if (!result.isEmpty()) {
+                listFavDrink.postValue(result)
+            }
+
+        }
     }
 
     fun deleteFav(favDrinktoDelete:DrinkGeneralDomain){

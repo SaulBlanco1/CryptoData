@@ -57,6 +57,11 @@ class DrinkFavorites : AppCompatActivity() {
             drinkFavsviewModel.deleteAllFavs()
         }
 
+        binding.btnUpdateFavs?.setOnClickListener {
+            drinkFavsviewModel.updateFav()
+        }
+
+
         //BUTTONS MENU
         binding.btnCocktails.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

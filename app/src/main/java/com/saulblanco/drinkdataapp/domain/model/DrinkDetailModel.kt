@@ -11,6 +11,7 @@ data class DrinkItemDomain(
     )
 
 data class DrinkDetailDomain(
+    val id:String,
     val name: String,
     val category: String,
     val alcoholic: String,
@@ -23,4 +24,4 @@ data class DrinkDetailDomain(
 
 )
 
-fun DrinkDetail.toDomain() = DrinkDetailDomain(name,category,alcoholic,instr,ing1, ing2, ing3, imageDetail,glassType)
+fun DrinkDetail.toDomain() = DrinkDetailDomain(id,name,category,alcoholic,instr,ing1, ing2, ing3, imageDetail,glassType)
