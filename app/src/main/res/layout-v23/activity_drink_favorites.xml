@@ -43,15 +43,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="top">
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnUpdateFavs"
-                            android:layout_width="65dp"
-                            android:layout_height="50dp"
-                            android:layout_gravity="center|start"
-                            android:backgroundTint="@color/softpink"
-                            android:text="Update"
-                            android:textColor="@color/white"
-                            android:textSize="11sp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -126,15 +118,7 @@
                 android:drawableTint="@color/white"
                 android:text="HOME" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnRandom"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:backgroundTint="@color/softpink"
-                android:drawableTop="@drawable/ic_power"
-                android:drawableTint="@color/white"
-                android:text="DISCOVER" />
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnFavorites"

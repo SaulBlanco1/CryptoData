@@ -150,7 +150,7 @@ class AuthActivity : AppCompatActivity() {
         appIntent.putExtra("email", email)
         appIntent.putExtra("provider", provider)
         startActivity(appIntent)
-        finish()
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

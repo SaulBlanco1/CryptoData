@@ -1,5 +1,6 @@
 package com.saulblanco.drinkdataapp.ui.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -68,6 +69,10 @@ class DrinkDetail : AppCompatActivity() {
             binding.loadingDetail.isVisible = it
         })
 
+    }
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
 

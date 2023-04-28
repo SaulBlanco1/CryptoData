@@ -57,9 +57,7 @@ class DrinkFavorites : AppCompatActivity() {
             drinkFavsviewModel.deleteAllFavs()
         }
 
-        binding.btnUpdateFavs?.setOnClickListener {
-            drinkFavsviewModel.updateFav()
-        }
+
 
 
         //BUTTONS MENU
@@ -70,13 +68,7 @@ class DrinkFavorites : AppCompatActivity() {
 
         }
 
-        binding.btnRandom.setOnClickListener {
-            drinkFavsviewModel.setRandomDrink()
-            val id = drinkFavsviewModel.getRandomDrinkId()
-            if (!id.equals("")) {
-                navigateToDetail(id)
-            }
-        }
+
 
         binding.btnFavorites.setOnClickListener {
             val intent = Intent(this, DrinkFavorites::class.java)

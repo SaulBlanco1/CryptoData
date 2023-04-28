@@ -32,15 +32,7 @@ class DrinkFavoritesViewModel @Inject constructor(
 
     }
 
-    fun updateFav(){
-        viewModelScope.launch {
-            val result = getFavDrinkList()
-            if (!result.isEmpty()) {
-                listFavDrink.postValue(result)
-            }
 
-        }
-    }
 
     fun deleteFav(favDrinktoDelete:DrinkGeneralDomain){
         viewModelScope.launch {
@@ -58,18 +50,6 @@ class DrinkFavoritesViewModel @Inject constructor(
 
 
         }
-    }
-
-    fun setRandomDrink() {
-        viewModelScope.launch {
-            idRandom = getRandomDrink()
-        }
-
-
-    }
-
-    fun getRandomDrinkId(): String {
-        return idRandom
     }
 
 
